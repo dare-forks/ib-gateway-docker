@@ -1,4 +1,4 @@
-name: algo-trader
+#name: algo-trader
 services:
   tws:
     restart: unless-stopped
@@ -11,8 +11,8 @@ services:
       context: ./latest
       dockerfile: Dockerfile.tws
       tags:
-        - "ghcr.io/gnzsnz/tws-rdesktop:latest"
-    image: ghcr.io/gnzsnz/tws-rdesktop:latest
+        - "local/tws-webtop:latest"
+    image: local/tws-webtop:latest
     environment:
       PUID: 1000
       PGID: 1000
@@ -59,7 +59,8 @@ services:
     ports:
       - "127.0.0.1:7496:7498" # live
       - "127.0.0.1:7497:7499" # paper
-      - "127.0.0.1:3370:3389" # xrdp
+      - "127.0.0.1:3000:3000" # web desktop http
+      - "127.0.0.1:3001:3001" # web desktop https
 
 volumes:
   tws_tmp:

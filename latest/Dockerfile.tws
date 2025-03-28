@@ -16,7 +16,7 @@ WORKDIR /
 # Build Stage: build production image
 ##############################################################################
 
-FROM lscr.io/linuxserver/rdesktop:ubuntu-xfce
+FROM lscr.io/linuxserver/webtop:ubuntu-xfce
 
 ENV IB_GATEWAY_VERSION=10.35.1e
 ENV IB_GATEWAY_RELEASE_CHANNEL=latest
@@ -56,8 +56,7 @@ COPY ./tws-scripts/run_tws.sh ${SCRIPT_PATH}
 COPY ./scripts/* ${SCRIPT_PATH}
 
 # labels
-LABEL org.opencontainers.image.source=https://github.com/gnzsnz/ib-gateway-docker
-LABEL org.opencontainers.image.url=https://github.com/gnzsnz/ib-gateway-docker/pkgs/container/tws-rdesktop
-LABEL org.opencontainers.image.description="Docker image with XFCE, TWS & IBC"
+LABEL org.opencontainers.image.description="Docker image with webtop, TWS & IBC"
 LABEL org.opencontainers.image.licenses="Apache License Version 2.0"
 LABEL org.opencontainers.image.version=${IB_GATEWAY_VERSION}-${IB_GATEWAY_RELEASE_CHANNEL}
+
