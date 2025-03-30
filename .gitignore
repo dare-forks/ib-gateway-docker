@@ -1,4 +1,4 @@
-/.env
+/.env*
 tws_settings/
 ssh/
 /config/
