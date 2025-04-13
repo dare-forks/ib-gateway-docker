@@ -11,8 +11,8 @@ services:
       context: ./latest
       dockerfile: Dockerfile.tws
       tags:
-        - "local/tws-webtop:latest"
-    image: local/tws-webtop:latest
+        - "tws-webtop:latest"
+    image: tws-webtop:latest
     environment:
       PUID: 1000
       PGID: 1000
@@ -50,7 +50,7 @@ services:
       SSH_RESTART: ${SSH_RESTART:-}
       SSH_RDP_PORT: ${SSH_RDP_PORT:-}
     volumes:
-      - ./config:/config # optional
+      - ./tws_webtop_config:/config # optional
       - /tmp:/tmp # recommended for performance
     # custom certificate and key
     #- ${PWD}/keylock:/keylock # required to avoid key generation by container
@@ -60,4 +60,4 @@ services:
       - "127.0.0.1:7496:7498" # live
       - "127.0.0.1:7497:7499" # paper
       - 3000:3000 # web desktop http
-      - 3001:3001 # web desktop http
+      - 3001:3001 # web desktop https
