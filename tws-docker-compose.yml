@@ -1,18 +1,19 @@
-name: algo-trader
+#name: algo-trader
 services:
   tws:
     restart: unless-stopped
     devices:
-      - /dev/dri:/dev/dri #recomended
+      - /dev/dri:/dev/dri # Bare metal
+      # - /dev/dxg:/dev/dri # wsl2
     shm_size: "1gb" #recomended
     security_opt:
       - seccomp:unconfined #recomended
     build:
-      context: ./latest
+      context: ./stable
       dockerfile: Dockerfile.tws
       tags:
-        - "ghcr.io/gnzsnz/tws-rdesktop:latest"
-    image: ghcr.io/gnzsnz/tws-rdesktop:latest
+        - "tws-webtop-kasm:latest"
+    image: tws-webtop-kasm:latest
     environment:
       PUID: ${PUID:-1000}
       PGID: ${PGID:-1000}
@@ -54,8 +55,8 @@ services:
       X_SCRIPTS: ${X_SCRIPTS:-}
       IBC_SCRIPTS: ${IBC_SCRIPTS:-}
     volumes:
-      - ./config:/config # optional
-      - tws_tmp:/tmp # recommended for performance
+      - ./tws_webtop_config:/config
+      - /tmp:/tmp
     # custom certificate and key
     #- ${PWD}/keylock:/keylock # required to avoid key generation by container
     #- ${PWD/key.pem:/etc/xrdp/key.pem # key
@@ -63,7 +64,5 @@ services:
     ports:
       - "127.0.0.1:7496:7498" # live
       - "127.0.0.1:7497:7499" # paper
-      - "127.0.0.1:3370:3389" # xrdp
-
-volumes:
-  tws_tmp:
+      - 3000:3000 # web desktop http
+      - 3001:3001 # web desktop https

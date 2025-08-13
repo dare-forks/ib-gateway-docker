@@ -16,7 +16,7 @@ WORKDIR /
 # Build Stage: build production image
 ##############################################################################
 
-FROM lscr.io/linuxserver/rdesktop:ubuntu-xfce
+FROM lscr.io/linuxserver/webtop:ubuntu-xfce-kasm
 
 ENV IB_GATEWAY_VERSION=$VERSION
 ENV IB_GATEWAY_RELEASE_CHANNEL=$CHANNEL
