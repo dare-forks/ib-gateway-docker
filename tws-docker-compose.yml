@@ -57,12 +57,7 @@ services:
     volumes:
       - ./tws_webtop_config:/config
       - /tmp:/tmp
-    # custom certificate and key
-    #- ${PWD}/keylock:/keylock # required to avoid key generation by container
-    #- ${PWD/key.pem:/etc/xrdp/key.pem # key
-    #- ${PWD}/cert.pem:/etc/xrdp/cert.pem # cert
     ports:
       - "127.0.0.1:7496:7498" # live
       - "127.0.0.1:7497:7499" # paper
-      - 3000:3000 # web desktop http
-      - 3001:3001 # web desktop https
+      - "127.0.0.1:3500:3000" # web desktop http
